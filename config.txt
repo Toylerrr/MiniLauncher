@@ -1,0 +1,3 @@
+App 1 = C:\Path\To\App1.exe
+App 2 = C:\Path\To\App2.exe
+App 3 = C:\Path\To\App3.exe
