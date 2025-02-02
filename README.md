@@ -7,5 +7,8 @@ Compile it yourself into an EXE so you don't freak out windows defender.
 
 pyinstaller --onefile --noconsole  main.py
 
+There is a compiled EXE within the releases but remember kids dont run random programs you find online... but im not your Mom. [I also guarantee its safe](https://media1.tenor.com/m/185-dSml7bsAAAAd/trust-me-aladdin.gif). 
+
 
 Change the config next to the exe and change the image to what ever you want it to be. 
+
