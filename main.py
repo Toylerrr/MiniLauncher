@@ -54,7 +54,7 @@ def open_app(app_path):
 
     # Try to open the application with the correct working directory
     try:
-        subprocess.Popen(resolved_path, cwd=app_dir, shell=True)
+        subprocess.Popen(resolved_path, cwd=app_dir, shell=False)
         log_message(f"Opened: {resolved_path} with working directory {app_dir}")
     except Exception as e:
         log_message(f"Error: Failed to open {resolved_path}. Exception: {e}")
