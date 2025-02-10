@@ -43,12 +43,16 @@ def open_app(app_path):
         log_message(f"Error: {app_path} does not exist.")
         return
     
-    # Try to open the application
+    # Get the directory where the executable is located
+    app_dir = os.path.dirname(app_path)
+
+    # Try to open the application with the correct working directory
     try:
-        subprocess.Popen(app_path, shell=True)
-        log_message(f"Opened: {app_path}")
+        subprocess.Popen(app_path, cwd=app_dir, shell=True)
+        log_message(f"Opened: {app_path} with working directory {app_dir}")
     except Exception as e:
         log_message(f"Error: Failed to open {app_path}. Exception: {e}")
+
 
 # Create the main window
 root = ctk.CTk()
