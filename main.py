@@ -38,20 +38,27 @@ if not APP_PATHS:
     log_message("Warning: No applications loaded from config.")
 
 def open_app(app_path):
-    # First check if the app path exists
-    if not os.path.exists(app_path):
-        log_message(f"Error: {app_path} does not exist.")
+    # If the path is relative, resolve it based on the script directory
+    if not os.path.isabs(app_path):
+        resolved_path = os.path.abspath(os.path.join(script_dir, app_path))
+    else:
+        resolved_path = app_path
+
+    # Check if the resolved executable exists
+    if not os.path.exists(resolved_path):
+        log_message(f"Error: {resolved_path} does not exist.")
         return
-    
-    # Get the directory where the executable is located
-    app_dir = os.path.dirname(app_path)
+
+    # Get the working directory of the executable
+    app_dir = os.path.dirname(resolved_path)
 
     # Try to open the application with the correct working directory
     try:
-        subprocess.Popen(app_path, cwd=app_dir, shell=True)
-        log_message(f"Opened: {app_path} with working directory {app_dir}")
+        subprocess.Popen(resolved_path, cwd=app_dir, shell=True)
+        log_message(f"Opened: {resolved_path} with working directory {app_dir}")
     except Exception as e:
-        log_message(f"Error: Failed to open {app_path}. Exception: {e}")
+        log_message(f"Error: Failed to open {resolved_path}. Exception: {e}")
+
 
 
 # Create the main window
